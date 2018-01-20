@@ -7,11 +7,35 @@
 <body>
   <script>
 
+// Decides randomly the computer's choice
   function computerPlay() {
-    let num = Math.floor((Math.random() * 10) + 1);
-    let choice = num <= 3.3 ? "rock" : num > 6.7 ? "paper" : "scissors";
+    const num = Math.floor((Math.random() * 10) + 1);
+    const choice = num <= 3.3 ? "rock" : num > 6.7 ? "paper" : "scissors";
     return choice;
   }
+
+// Compares both players choices and returns result of the match
+  function playRound(playerSelection, computerSelection) {
+    switch (true) {
+        case playerSelection == "rock" && computerSelection == "scissors":
+        case playerSelection == "paper" && computerSelection == "rock":
+        case playerSelection == "scissors" && computerSelection == "paper":
+          return "Player wins! " + playerSelection + " beats " + computerSelection + "!"
+          break;
+
+        case playerSelection == "rock" && computerSelection == "paper":
+        case playerSelection == "paper" && computerSelection == "scissors":
+        case playerSelection == "scissors" && computerSelection == "rock":
+          return "Computer wins! " + computerSelection + " beats " + playerSelection + "!"
+          break;
+        default:
+          return "It's a tie!";
+    }
+  }
+
+  const playerSelection = "rock";
+  const computerSelection = computerPlay();
+  console.log(playRound(playerSelection, computerSelection));
 
   </script>
 </body>
