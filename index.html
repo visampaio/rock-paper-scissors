@@ -7,6 +7,9 @@
 <body>
   <script>
 
+  var playerWins = 0;
+  var computerWins = 0;
+
 // Decides randomly the computer's choice
   function computerPlay() {
     const num = Math.floor((Math.random() * 10) + 1);
@@ -20,16 +23,19 @@
         case playerSelection == "rock" && computerSelection == "scissors":
         case playerSelection == "paper" && computerSelection == "rock":
         case playerSelection == "scissors" && computerSelection == "paper":
-          return "Player wins! " + capitalize(playerSelection) + " beats " + capitalize(computerSelection) + "!"
+          playerWins++;
+          return "Player wins! " + capitalize(playerSelection) + " beats " + capitalize(computerSelection) + "!";
           break;
 
         case playerSelection == "rock" && computerSelection == "paper":
         case playerSelection == "paper" && computerSelection == "scissors":
         case playerSelection == "scissors" && computerSelection == "rock":
-          return "Computer wins! " + capitalize(computerSelection) + " beats " + capitalize(playerSelection) + "!"
+          computerWins++;
+          return "Computer wins! " + capitalize(computerSelection) + " beats " + capitalize(playerSelection) + "!";
           break;
         default:
           return "It's a tie!";
+          break;
     }
   }
 
@@ -37,9 +43,15 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  const playerSelection = "rock";
-  const computerSelection = computerPlay();
-  console.log(playRound(playerSelection, computerSelection));
+  function game(){
+    while ((playerWins < 5) && (computerWins < 5)) {
+      const playerSelection = window.prompt("Choose rock, paper or scissors!");
+      const computerSelection = computerPlay();
+      console.log(playRound(playerSelection, computerSelection));
+      console.log("Player: " + playerWins + " Computer: " + computerWins);
+    }
+  }
+
 
   </script>
 </body>
