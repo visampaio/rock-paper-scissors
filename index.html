@@ -10,19 +10,23 @@
   <button id="paper">Paper</button>
   <button id="scissors">Scissors</button>
   <div id="result"></div>
+  <div id="gameStatus"></div>
 
 <script>
   const buttons = document.querySelectorAll('button');
   const result = document.querySelector("#result");
+  const gameStatus = document.querySelector("#gameStatus");
+  let playerWins = 0;
+  let computerWins = 0;
+
+// Plays round when player clicks on a button
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
       const computerSelection = computerPlay();
       result.textContent = playRound(button.id, computerSelection);
+      gameStatus.textContent = game();
     });
   });
-
-  let playerWins = 0;
-  let computerWins = 0;
 
 // Decides randomly the computer's choice
   function computerPlay() {
@@ -31,7 +35,7 @@
     return choice;
   }
 
-// Compares both players choices and returns result of the match
+// Compares both players choices and returns result of the round
   function playRound(playerSelection, computerSelection) {
     switch (true) {
         case playerSelection == "rock" && computerSelection == "scissors":
@@ -57,14 +61,22 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  // function game(){
-  //   while ((playerWins < 5) && (computerWins < 5)) {
-  //     const playerSelection = window.prompt("Choose rock, paper or scissors!");
-  //     const computerSelection = computerPlay();
-  //     console.log(playRound(playerSelection, computerSelection));
-  //     console.log("Player: " + playerWins + " Computer: " + computerWins);
-  //   }
-  // }
+// Keeps track of and returns score of the game
+  function game(){
+    while ((playerWins < 5) && (computerWins < 5)) {
+      return "Player: " + playerWins + " Computer: " + computerWins;
+    }
+    if (playerWins == 5) {
+      playerWins = 0;
+      computerWins = 0;
+      return "Game over! Player wins!";
+    }
+    else if (computerWins == 5) {
+      playerWins = 0;
+      computerWins = 0;
+      return "Game over! Computer wins!";
+    }
+  }
 
 
 </script>
