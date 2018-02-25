@@ -5,10 +5,24 @@
 </head>
 
 <body>
-  <script>
 
-  var playerWins = 0;
-  var computerWins = 0;
+  <button id="rock">Rock</button>
+  <button id="paper">Paper</button>
+  <button id="scissors">Scissors</button>
+  <div id="result"></div>
+
+<script>
+  const buttons = document.querySelectorAll('button');
+  const result = document.querySelector("#result");
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const computerSelection = computerPlay();
+      result.textContent = playRound(button.id, computerSelection);
+    });
+  });
+
+  let playerWins = 0;
+  let computerWins = 0;
 
 // Decides randomly the computer's choice
   function computerPlay() {
@@ -43,16 +57,16 @@
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  function game(){
-    while ((playerWins < 5) && (computerWins < 5)) {
-      const playerSelection = window.prompt("Choose rock, paper or scissors!");
-      const computerSelection = computerPlay();
-      console.log(playRound(playerSelection, computerSelection));
-      console.log("Player: " + playerWins + " Computer: " + computerWins);
-    }
-  }
+  // function game(){
+  //   while ((playerWins < 5) && (computerWins < 5)) {
+  //     const playerSelection = window.prompt("Choose rock, paper or scissors!");
+  //     const computerSelection = computerPlay();
+  //     console.log(playRound(playerSelection, computerSelection));
+  //     console.log("Player: " + playerWins + " Computer: " + computerWins);
+  //   }
+  // }
 
 
-  </script>
+</script>
 </body>
 </html>
